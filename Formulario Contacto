@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Preferencia de Colores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 id="title">Formulario de Preferencia de Colores</h1>
+        <p id="description">Por favor, completa el formulario para compartir tus preferencias.</p>
+    </header>
+    <main>
+        <form id="survey-form">
+            <!-- Nombre -->
+            <div class="container">
+                <label for="name" id="name-label">Nombre:</label>
+                <input id="name" name="name" type="text" placeholder="Ingresa tu nombre" required>
+            </div>
+            
+            <!-- Correo Electrónico -->
+            <div class="container">
+                <label for="email" id="email-label">Correo Electrónico:</label>
+                <input id="email" name="email" type="email" placeholder="Ingresa tu correo electrónico" required>
+            </div>
+            
+            <!-- Número -->
+            <div class="container">
+                <label for="number" id="number-label">Número:</label>
+                <input id="number" name="number" type="number" min="1" max="100" placeholder="Ingresa un número entre 1 y 100" required>
+            </div>
+            
+            <!-- Dropdown -->
+            <div class="container">
+                <label for="dropdown">¿Prefieres colores cálidos o fríos?</label>
+                <select id="dropdown" name="dropdown" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="calidos">Cálidos</option>
+                    <option value="frios">Fríos</option>
+                </select>
+            </div>
+            
+            <!-- Casillas de verificación -->
+            <div class="container">
+                <p>¿Qué colores sueles usar?</p>
+                <label><input type="checkbox" name="preferencias" value="rojo"> Rojo</label><br>
+                <label><input type="checkbox" name="preferencias" value="azul"> Azul</label><br>
+                <label><input type="checkbox" name="preferencias" value="verde"> Verde</label><br>
+                <label><input type="checkbox" name="preferencias" value="amarillo"> Amarillo</label><br>
+            </div>
+            
+            <!-- Mensaje -->
+            <div class="container">
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            </div>
+            
+            <!-- Elección de color -->
+            <div class="container">
+                <p>Elige tu color preferido:</p>
+                <label><input type="radio" name="color" value="amarillo" required> Amarillo</label><br>
+                <label><input type="radio" name="color" value="naranja"> Naranja</label><br>
+                <label><input type="radio" name="color" value="morado"> Morado</label><br>
+                <label><input type="radio" name="color" value="negro"> Negro</label><br>
+                <label><input type="radio" name="color" value="blanco"> Blanco</label>
+            </div>
+            
+            <!-- Otros colores -->
+            <div class="container">
+                <label for="otros">¿Otros colores que te gusten?</label>
+                <textarea id="otros" name="otros" rows="2" placeholder="Especifica otros colores"></textarea>
+            </div>
+            
+            <!-- Botón de envío -->
+            <div class="container">
+                <button type="submit" id="submit">Enviar</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
