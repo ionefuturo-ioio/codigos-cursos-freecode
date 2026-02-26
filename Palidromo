@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"/>
+    <title>Palíndromo</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="title">Es un palindromo?</h1>
+      <div class="palindrome-div">
+    <label for="text-input">
+          Insira su texto aqui.
+    </label>
+ <input class="palindrome-input" id="text-input" value="" type="text"></input>
+<button class="palindrome-btn"   id="check-btn">Check</button>
+<div class="palindrome-results  hidden" id="result"></div>
+</div>
+<div class="palindrome-definition-div">
+<p class="palindrome-definition">
+<span role="img" aria-label="light-bulb">&#128161;</span>
+ A <dfn>palindrome</dfn> is a word or sentence that's spelled the same way both forward and backward, ignoring punctuation, case, and spacing.
+</p>
+</div> 
+</main>
+<script src="script.js"></script>
+  </body>
+</html>
+JS
+const textInput = document.getElementById("text-input");
+const checkBtn = document.getElementById("check-btn");
+const resultDiv = document.getElementById("result");
+
+checkBtn.addEventListener('click', () => {
+    let input = textInput.value.trim();
+
+    if (!input) {
+        alert('Please input a value');
+        return;
+    }
+
+    // Eliminar espacios y convertir a minúsculas para la verificación
+    const processedInput = input.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const reversedInput = processedInput.split("").reverse().join("");
+
+    if (processedInput === reversedInput) {
+        resultDiv.textContent = `${input} is a palindrome.`;
+    } else {
+        resultDiv.textContent = `${input} is not a palindrome.`;
+    }
+});
+CSS
+h1{
+  font-size: 40px;
+  color:purple; 
+  text-align: center;
+}
+body{
+background-color: light-blue;
+color: dark-blue;
+align-items: center;
+}
+p{
+  font-family: Arial, sans-serif;
+  text-align: center;
+  border:  2px solid #ccc;
+   width: 300px; 
+   padding: 20px;
+  background-color: #f9f9f9;
+   color: #333;
+}
+label{
+  text-align: center;
+  width: 300px;
+  padding: 15px;
+  border: 1px dashed blue;
+  background-color: lightyellow;
+  align-items: center;
+  display: flex;
+}
+input{
+   text-align: center;
+  width: 300px;
+  padding: 15px;
+  border: 1px dashed blue;
+  background-color: lightyellow;
+  align-items: center;
+  display: flex;
+}
