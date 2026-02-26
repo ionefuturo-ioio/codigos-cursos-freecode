@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cash Register</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <input id="cash" type="number" step="0.01">
+  <button id="purchase-btn">Purchase</button>
+  <p id="change-due"></p>
+<div class="app">
+  <h1>Cash Register</h1>
+  <p class="sub">Calculadora de cambio</p>
+
+  <div class="row">
+    <label for="cash">Efectivo</label>
+    <input id="cash" type="number" step="0.01" placeholder="0.00" />
+  </div>
+
+  <button id="purchase-btn">Comprar</button>
+
+  <p id="change-due" class="change-lines"></p>
+  <p class="help">Ingresa el monto y presiona “Comprar”.</p>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+CSS
+/* ====== styles.css ====== */
+:root{
+  --bg: #0f172a;            /* slate-900 */
+  --panel: #111827;         /* gray-900 */
+  --muted: #94a3b8;         /* slate-400 */
+  --text: #e5e7eb;          /* gray-200 */
+  --primary: #22c55e;       /* green-500 */
+  --primary-pressed: #16a34a;
+  --ring: #86efac;          /* green-300 */
+  --danger: #ef4444;        /* red-500 */
+  --warn: #f59e0b;          /* amber-500 */
+  --ok: #10b981;            /* emerald-500 */
+  --card-radius: 1rem;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+          "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--font);
+  background: radial-gradient(1200px 800px at 80% -20%, #1f2937 0%, var(--bg) 60%);
+  color:var(--text);
+  display:grid;
+  place-items:center;
+  padding:24px;
+}
+
+/* Container */
+.app{
+  width:min(640px, 92vw);
+  background:linear-gradient(180deg, #111827 0%, #0b1220 100%);
+  border:1px solid rgba(148,163,184,.12);
+  border-radius:var(--card-radius);
+  box-shadow:var(--shadow);
+  padding:28px;
+}
+
+/* Header */
+.app h1{
+  margin:0 0 8px;
+  font-size:clamp(22px, 2.6vw, 28px);
+  letter-spacing:.3px;
+}
+.app p.sub{
+  margin:0 0 24px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* Form row */
+.row{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:14px;
+}
+.row label{
+  min-width:88px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* Inputs */
+input[type="number"], input[type="text"]{
+  flex:1;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(148,163,184,.18);
+  background:#0b1220;
+  color:var(--text);
+  outline:none;
+  font-size:16px;
+  transition: border-color .15s, box-shadow .15s, transform .02s;
+}
+input[type="number"]:focus,
+input[type="text"]:focus{
+  border-color: var(--ring);
+  box-shadow: 0 0 0 4px rgba(134,239,172,.12);
+}
+
+/* Button */
+#purchase-btn{
+  margin-top:10px;
+  width:100%;
+  padding:12px 16px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(180deg, var(--primary), var(--primary-pressed));
+  color:#062312;
+  font-weight:700;
+  font-size:16px;
+  cursor:pointer;
+  transition: transform .06s ease, filter .15s ease, box-shadow .15s ease;
+  box-shadow: 0 8px 24px rgba(34,197,94,.28);
+}
+#purchase-btn:hover{ filter:brightness(1.05) }
+#purchase-btn:active{ transform: translateY(1px) }
+#purchase-btn:focus-visible{
+  outline:2px solid var(--ring);
+  outline-offset:3px;
+}
+
+/* Change due panel */
+#change-due{
+  margin-top:18px;
+  padding:14px 16px;
+  border-radius:12px;
+  background: rgba(148,163,184,.06);
+  border:1px solid rgba(148,163,184,.16);
+  min-height:48px;
+  line-height:1.4;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+/* Status chips (optional: if insert spans with classes) */
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.3px;
+  margin-right:8px;
+}
+.status.open{ background:rgba(16,185,129,.15); color:var(--ok); border:1px solid rgba(16,185,129,.35) }
+.status.closed{ background:rgba(59,130,246,.15); color:#60a5fa; border:1px solid rgba(59,130,246,.35) }
+.status.insufficient{ background:rgba(239,68,68,.15); color:var(--danger); border:1px solid rgba(239,68,68,.35) }
+
+/* Helper: monospace lines for breakdown */
+.change-lines{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Liberation Mono", Consolas, monospace;
+  font-size:14px;
+}
+
+/* Footer/help text */
+.help{
+  margin-top:12px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* Small screens */
+@media (max-width:460px){
+  .row{ flex-direction:column; align-items:stretch }
+  .row label{ min-width:auto }
+}
+JS
+// ===== Global variables =====
+let price = 19.5;
+let cid = [
+  ["PENNY", 0.5],
+  ["NICKEL", 0],
+  ["DIME", 0],
+  ["QUARTER", 0],
+  ["ONE", 0],
+  ["FIVE", 0],
+  ["TEN", 0],
+  ["TWENTY", 0],
+  ["ONE HUNDRED", 0]
+];
+
+// ===== DOM elements =====
+const cashInput = document.getElementById("cash");
+const changeDueEl = document.getElementById("change-due");
+const purchaseBtn = document.getElementById("purchase-btn");
+
+// ===== Event listener =====
+purchaseBtn.addEventListener("click", () => {
+  const cash = Number(cashInput.value);
+
+  if (cash < price) {
+    alert("Customer does not have enough money to purchase the item");
+    return;
+  }
+
+  if (cash === price) {
+    changeDueEl.textContent = "No change due - customer paid with exact cash";
+    return;
+  }
+
+  const result = checkCashRegister(price, cash, cid);
+
+  // Correctly format the output based on the returned object
+  if (result.status === "CLOSED") {
+    // For CLOSED, iterate through the change array (which is the full cid)
+    const formattedChange = result.change
+      .filter(([_, amount]) => amount > 0) // Filter out denominations with zero amount
+      .map(([name, amount]) => `${name}: $${amount}`)
+      .join(" ");
+    changeDueEl.textContent = `Status: CLOSED ${formattedChange}`;
+  } else if (result.status === "OPEN") {
+    // For OPEN, iterate through the change array
+    const formattedChange = result.change
+      .map(([name, amount]) => `${name}: $${amount}`)
+      .join(" ");
+    changeDueEl.textContent = `Status: OPEN ${formattedChange}`;
+  } else {
+    // For INSUFFICIENT_FUNDS
+    changeDueEl.textContent = `Status: INSUFFICIENT_FUNDS`;
+  }
+});
+
+// ===== Function to calculate change =====
+function checkCashRegister(price, cash, cid) {
+  let changeNeeded = +(cash - price).toFixed(2);
+  let totalCID = +cid.reduce((sum, [, amount]) => sum + amount, 0).toFixed(2);
+
+  const currencyUnit = [
+    ["PENNY", 0.01],
+    ["NICKEL", 0.05],
+    ["DIME", 0.1],
+    ["QUARTER", 0.25],
+    ["ONE", 1],
+    ["FIVE", 5],
+    ["TEN", 10],
+    ["TWENTY", 20],
+    ["ONE HUNDRED", 100]
+  ];
+
+  if (totalCID < changeNeeded) {
+    return { status: "INSUFFICIENT_FUNDS", change: [] };
+  }
+
+  // The key fix is here: if totalCID equals changeNeeded, return the entire cid.
+  if (totalCID === changeNeeded) {
+    return { status: "CLOSED", change: cid };
+  }
+
+  let changeArray = [];
+  let cidCopy = cid.map(arr => [...arr]).reverse();
+  let units = [...currencyUnit].reverse();
+
+  for (let i = 0; i < units.length; i++) {
+    let coinName = units[i][0];
+    let coinValue = units[i][1];
+    let coinAmount = cidCopy[i][1];
+    let amountToReturn = 0;
+
+    while (changeNeeded >= coinValue && coinAmount >= coinValue) {
+      changeNeeded = +(changeNeeded - coinValue).toFixed(2);
+      coinAmount = +(coinAmount - coinValue).toFixed(2);
+      amountToReturn = +(amountToReturn + coinValue).toFixed(2);
+    }
+
+    if (amountToReturn > 0) {
+      changeArray.push([coinName, amountToReturn]);
+    }
+  }
+
+  if (changeNeeded > 0) {
+    return { status: "INSUFFICIENT_FUNDS", change: [] };
+  }
+
+  return { status: "OPEN", change: changeArray };
+}
