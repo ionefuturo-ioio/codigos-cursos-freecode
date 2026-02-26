@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Homenaje: Janis Joplin</title>
+</head>
+<body>
+  <main id="main">
+    <h1 id="title">Homenaje a Janis Joplin</h1>
+    <a id="tribute-link" href="https://es.wikipedia.org/wiki/Janis_Joplin" target="_blank">Saber más sobre Janis Joplin</a>
+    <figure id="img-div">
+      <img id="image" src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Janis_Joplin_1970.JPG" alt="Janis Joplin en 1970">
+      <figcaption id="img-caption">Janis Joplin</figcaption>
+    </figure>
+    <p id="tribute-info">
+      Janis Lyn Joplin​ fue una cantante estadounidense de rock y blues que se convirtió en un ícono hippie y de la contracultura en la década de los 60.​
+    </p>
+    <p>
+      Considerada por la crítica especializada una de las mejores y más influyentes artistas de todos los tiempos, y la primera mujer estrella del rock and roll, sus discos se encuentran entre los más vendidos de la industria musical.
+    </p>
+    <p>
+      Falleció a la edad de veintisiete años, solo un par de semanas después que otro gran músico (y amigo) estadounidense, Jimi Hendrix, quien también falleció a los veintisiete años.
+    </p>
+  </main>
+</body>
+</html>
+CSS
+img{
+ display: block; 
+}
+#image{
+  max-width: 100%;
+  height: auto;
+}
+.*{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
